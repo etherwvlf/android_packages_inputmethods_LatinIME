@@ -52,20 +52,6 @@
             <meta-data android:name="android.view.im" android:resource="@xml/method" />
         </service>
 
-        <service android:name=".spellcheck.AndroidSpellCheckerService"
-                 android:label="@string/spell_checker_service_name"
-                 android:permission="android.permission.BIND_TEXT_SERVICE">
-            <intent-filter>
-                <action android:name="android.service.textservice.SpellCheckerService" />
-            </intent-filter>
-            <meta-data android:name="android.view.textservice.scs"
-                    android:resource="@xml/spellchecker" />
-        </service>
-
-        <service android:name="com.android.inputmethod.dictionarypack.DictionaryService"
-                android:label="@string/dictionary_service_name">
-        </service>
-
         <!-- Activities -->
         <activity android:name=".setup.SetupActivity"
                 android:theme="@style/platformActivityTheme"
@@ -103,31 +89,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".spellcheck.SpellCheckerSettingsActivity"
-                  android:theme="@style/platformSettingsTheme"
-                  android:label="@string/android_spell_checker_settings">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name="com.android.inputmethod.dictionarypack.DictionarySettingsActivity"
-                android:theme="@style/platformSettingsTheme"
-                android:label="@string/dictionary_settings_title"
-                android:uiOptions="splitActionBarWhenNarrow">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>
-
-        <activity android:name="com.android.inputmethod.dictionarypack.DownloadOverMeteredDialog"
-                android:theme="@style/platformActivityTheme"
-                android:label="@string/dictionary_install_over_metered_network_prompt">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>
-
         <!-- Unexported activity used for tests. -->
         <activity android:name=".settings.TestFragmentActivity"
                 android:exported="false" />
@@ -142,21 +103,6 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name="DictionaryPackInstallBroadcastReceiver" android:exported="false">
-            <intent-filter>
-                <action android:name="com.android.inputmethod.dictionarypack.aosp.UNKNOWN_CLIENT" />
-            </intent-filter>
-        </receiver>
-
-        <receiver android:name="com.android.inputmethod.dictionarypack.EventHandler">
-            <intent-filter>
-                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
-                <action android:name="android.intent.action.DATE_CHANGED" />
-                <action android:name="com.android.inputmethod.dictionarypack.aosp.UPDATE_NOW" />
-                <action android:name="com.android.inputmethod.dictionarypack.aosp.INIT_AND_UPDATE_NOW" />
-            </intent-filter>
-        </receiver>
-
         <!-- Broadcast receiver for AccountManager#LOGIN_ACCOUNTS_CHANGED_ACTION. -->
         <receiver android:name=".accounts.AccountsChangedReceiver">
             <intent-filter>
@@ -164,13 +110,5 @@
             </intent-filter>
         </receiver>
 
-        <!-- Content providers -->
-        <provider android:name="com.android.inputmethod.dictionarypack.DictionaryProvider"
-                android:grantUriPermissions="true"
-                android:exported="false"
-                android:authorities="@string/authority"
-                android:multiprocess="false"
-                android:label="@string/dictionary_provider_name">
-        </provider>
     </application>
 </manifest>
